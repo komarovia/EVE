@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<input type="number" id="valueMarket" value=""> Цена продажи на ранке: <span id="resultValueMarket"></span> <br>
+	<br>
+	<input type="number" id="valueSale" value=""> Цена скупки: <span id="resultValueSale"></span> <br>
+	<br>
+	<input type="number" id="valueRes" value=""> Кол-во ресурсов: <span id="resultValueRes"></span> <br>
+	<br>
+	<input type="number" id="marketCom" value=""> Комиссия рынка: <span id="resultMarketCom"></span> <br>
+	<br>
+	<input type="number" id="saleCom" value=""> Комиссия скупки: <span id="resultSaleCom"></span> <br>
+	<br>
+	<input id="result"> <br>
+	<br>
+	<button onclick="check()">Посчитать прибыль</button>
+
+	<script>
+		'use strict';
+
+		valueMarket.oninput = function () {
+			resultValueMarket.innerHTML = valueMarket.value + " ISK";
+		};
+
+		valueSale.oninput = function () {
+			resultValueSale.innerHTML = valueSale.value + " ISK";
+		};
+
+		valueRes.oninput = function () {
+			resultValueRes.innerHTML = valueRes.value;
+		};
+
+		marketCom.oninput = function () {
+			resultMarketCom.innerHTML = marketCom.value + " %";
+		};
+
+		saleCom.oninput = function () {
+			resultSaleCom.innerHTML = saleCom.value + " %";
+		};
+
+		function check() {
+			const valueMarket = + document.getElementById("valueMarket").value;
+			const valueSale = + document.getElementById("valueSale").value;
+			const valueRes = + document.getElementById("valueRes").value;
+			const marketCom = + document.getElementById("marketCom").value / 100;
+			const saleCom = + document.getElementById("saleCom").value / 100;
+
+			const resultProfitMarket = (valueRes * valueMarket) - (valueRes * valueMarket * (marketCom + saleCom))
+			const resultProfitSale = (valueRes * valueSale) - (valueRes * valueSale * saleCom)
+			const profit = resultProfitMarket - resultProfitSale
+			document.getElementById("result").value = Math.round(profit)
+			console.log(profit)
+		}
+// const resultMarket = (form.name.value * valueRes) - (valueMarket * valueRes * 0.224);
+// const resultSale = (valueSale * valueRes) - (valueSale * valueRes * 0.15);
+// const profit = resultMarket - resultSale;
+
+// alert(profit)
+
+	</script>
+</body>
+
+</html>
